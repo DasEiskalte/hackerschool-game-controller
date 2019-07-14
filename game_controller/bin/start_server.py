@@ -12,7 +12,6 @@ print(f'Starte Server')
 tastatur.start()
 starte_ausgabestop()
 
-tastatur.druecke_taste(Key.up, dauer_in_sekunden=30, prozent_aktiv=0.7)
 
 
 async def server(websocket, path):
@@ -20,6 +19,7 @@ async def server(websocket, path):
         klassifikation = await hole_klassifikation(websocket)
         klasse = klassifikation.beste_klasse.name
         print(f"< {klasse}")
+        tastatur.druecke_taste(Key.up, dauer_in_sekunden=1.0, prozent_aktiv=0.8)
         if klasse == 'links':
             tastatur.lasse_tasten_los([Key.left, Key.right])
             tastatur.druecke_taste(Key.left, dauer_in_sekunden=1.0, prozent_aktiv=0.8)
