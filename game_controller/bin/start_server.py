@@ -20,10 +20,12 @@ async def server(websocket, path):
         klasse = klassifikation.beste_klasse.name
         if tastatur.ist_ausgabe_aktiv:
             print(f"< {klasse}")
-        if klasse == 'sprung':
+        if klasse == 'oben':
             tastatur.druecke_taste(Key.up, dauer_in_sekunden=1.0, prozent_aktiv=0.8)
+        elif klasse == 'unten' :
+            tastatur.druecke_taste(Key.down, dauer_in_sekunden=1.0, prozent_aktiv=0.8)
         elif klasse == 'nichts':
-            tastatur.lasse_tasten_los([Key.up])
+            tastatur.lasse_tasten_los([Key.up, Key.down])
 
 
 start_server = websockets.serve(server, 'localhost', 8765)
